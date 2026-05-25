@@ -1,0 +1,46 @@
+# =====================================================
+# DogeMine - Root .htaccess (cPanel / Apache 2.4)
+# =====================================================
+
+Options -Indexes -ExecCGI
+ServerSignature Off
+
+# Default index files
+DirectoryIndex index.php index.html
+
+# Block access to sensitive files
+<FilesMatch "^\.|^(composer\.(json|lock)|package(-lock)?\.json|README\.md|database\.sql)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to includes/ directly
+RedirectMatch 403 (?i)^/includes/.*$
+
+# Disable caching for PHP responses; cache static assets aggressively
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|svg|webp|woff2?)$">
+        Header set Cache-Control "public, max-age=2592000, immutable"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 30 days"
+    ExpiresByType application/javascript "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/svg+xml "access plus 30 days"
+    ExpiresByType image/webp "access plus 30 days"
+    ExpiresByType font/woff2 "access plus 365 days"
+</IfModule>
+
+# Force HTTPS (uncomment after SSL is in place on cPanel)
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} !=on
+#     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>

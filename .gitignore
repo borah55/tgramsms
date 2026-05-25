@@ -1,0 +1,16 @@
+# PHP installer outputs / secrets
+includes/config.php
+includes/.installed
+
+# IPN logs
+ipn/cp_ipn.log
+
+# OS / IDE noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Composer (if added later)
+vendor/

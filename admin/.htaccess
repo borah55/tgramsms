@@ -1,0 +1,4 @@
+Options -Indexes
+<FilesMatch "^_(header|footer|sidebar)\.php$">
+    Require all denied
+</FilesMatch>

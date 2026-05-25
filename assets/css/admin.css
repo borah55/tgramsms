@@ -1,0 +1,4 @@
+/* Admin-specific overrides */
+.dm-admin-topbar { border-bottom-color: rgba(255, 216, 61, .25); }
+.dm-admin .dm-side-link { font-size: .92rem; }
+.dm-admin .dm-card { border-color: rgba(255, 216, 61, .15); }
