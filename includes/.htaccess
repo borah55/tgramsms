@@ -1,0 +1,2 @@
+# Deny direct access to ALL files in includes/
+Require all denied

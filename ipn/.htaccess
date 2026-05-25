@@ -1,0 +1,4 @@
+# Allow only the IPN handler. Block log files.
+<FilesMatch "\.(log|txt|md)$">
+    Require all denied
+</FilesMatch>
